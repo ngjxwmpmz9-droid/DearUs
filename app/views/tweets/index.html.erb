@@ -1,0 +1,22 @@
+Enjoy programming!
+<h1>Dear Us</h1>
+<%= link_to "新規投稿ページへ", new_tweet_path %>
+<div class="tweets-container">
+
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <%= t.body %>
+      <%= t.created_at %>
+      <%= link_to "詳細へ", tweet_path(t.id) %>
+      <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <% if t.user.present? %> <%= link_to "DM", user_path(t.user.id) %> <% end %>
+      <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+    </div>
+  <% end %>
+  
+</div>
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>

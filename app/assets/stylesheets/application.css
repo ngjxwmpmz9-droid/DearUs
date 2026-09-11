@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+
+ * {
+  padding: 0;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  position: relative; 
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background-color: #e5a6d7;
+  height: 80px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header a {
+  color: white; 
+  text-decoration: none; 
+}
+header h1 {
+  color: white;
+  margin-left: 20px;
+}
+.header-list {
+  display: flex;
+  align-items: center;
+}
+header ul {
+  display: flex;
+}
+header li {
+  list-style: none;
+  margin-right: 40px;
+}
+footer {
+  color: white;
+  height: 30px;
+  background-color: #000;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: flex-end;
+}

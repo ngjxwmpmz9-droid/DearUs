@@ -1,0 +1,127 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <!--アカウント編集時に名前を入力できるようにフォームを追加-->
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "お名前" %>
+  </div>
+
+  <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_area :profile, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :email %></p>
+    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
+    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
+    <% if @minimum_password_length %>
+      <p><em><%= @minimum_password_length %> characters minimum</em></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
+    <p><%= f.password_field :current_password, autocomplete: "current-password" %></p>
+  </div>
+
+  <!-- アカウント編集時にプロフィール帳項目を入力できるようにフォームを追加 -->
+  <div class="field">
+    <p><%= f.label :age, "年齢" %></p>
+    <p><%= f.text_field :age %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :bloodtype, "血液型" %></p>
+    <p><%= f.text_field :bloodtype %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :zodiac, "星座" %></p>
+    <p><%= f.text_field :zodiac %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :bodyflame, "骨格" %></p>
+    <p><%= f.text_field :bodyflame %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :personalcolor, "パーソナルカラー" %></p>
+    <p><%= f.text_field :personalcolor %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :hobby, "趣味" %></p>
+    <p><%= f.text_field :hobby %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :mbti, "MBTI" %></p>
+    <p><%= f.text_field :mbti %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :lovetype, "ラブタイプ" %></p>
+    <p><%= f.text_field :lovetype %></p>
+  </div>
+
+  <div class="field">
+      <p><%= f.label :music_url, "お気に入りプレイリスト (Apple Music URL)" %></p>
+      <%= f.text_field :music_url, :size => 140 %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :fashion, "好きなファッション" %></p>
+    <p><%= f.text_field :fashion %></p>
+    <p><%= f.file_field :fashion_image %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :descript, "具体的にどんなファッション？？" %></p>
+    <p><%= f.text_area :descript, rows: 4 %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :place, "お気に入りスポット" %></p>
+    <p><%= f.text_field :place %></p>
+    <p><%= f.file_field :place_image %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :place_url, "場所のリンク(URL)" %>
+    <%= f.text_field :place_url, placeholder: "https://example.com" %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :encounter, "出会いのきっかけ / 馴れ初め" %></p>
+    <p><%= f.text_area :encounter, rows: 3 %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "Back", :back %>

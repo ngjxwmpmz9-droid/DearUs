@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<h1>Dear Us</h1>
+<h3>日常記録</h3>
+<%= form_for @tweet do |f| %>
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_field :body, :size => 140 %>
+  </div>
+  <%= f.submit "送信" %>
+<% end %>
+<%= link_to "Tweet一覧に戻る", tweets_path %>

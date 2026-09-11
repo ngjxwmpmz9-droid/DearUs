@@ -1,0 +1,98 @@
+<div class="user-profile-toggle">
+  <input type="checkbox" id="profile-check" style="display: none;">
+
+  <label for="profile-check" style="cursor: pointer;" class="profile-label">
+    📖 <%= @user.name %> さんのプロフィール帳を見る
+  </label>
+
+  <div class="user-details-content">
+    <h2><%= @user.name %> さんのプロフィール帳</h2>
+
+    <div class="profile-list">
+      <p><strong>Name：</strong> <%= @user.name %></p>
+      <p><strong>自己紹介・ひとこと：</strong> <%= @user.profile %></p>
+      <p><strong>Mail Address：</strong> <%= @user.email %></p>
+      <p><strong>Age：</strong> <%= @user.age %></p>
+      <p><strong>Blood Type：</strong> <%= @user.bloodtype %></p>
+      <p><strong>Ziodic：</strong> <%= @user.zodiac %></p>
+      <p><strong>Body Frame：</strong> <%= @user.bodyflame %></p>
+      <p><strong>Personal Colour：</strong> <%= @user.personalcolor %></p>
+      <p><strong>Hobby：</strong> <%= @user.hobby %></p>
+      <p><strong>MBTI：</strong> <%= @user.mbti %></p>
+      <p><strong>Love Type：</strong> <%= @user.lovetype %></p>
+
+      <% if @user.music_url.present? %>
+        <div class="music-player">
+          <h3>Favourite Music Playlist</h3>
+          <iframe
+            allow="autoplay *; encrypted-media *;"
+            frameborder="0"
+            height="450"
+            style="width:100%;max-width:660px;overflow:hidden;background:transparent;"
+            sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
+            src="https://embed.music.apple.com/jp/playlist/pl.u-55D667VS8lEgWjx">
+          </iframe>
+        </div>
+      <% end %>
+
+      <p><strong>Favourite Fashion:</strong> <%= @user.fashion %></p>
+
+      <% if @user.fashion_image.attached? %>
+        <p><%= image_tag @user.fashion_image, style: "max-width: 300px; height: auto;" %></p>
+      <% end %>
+
+      <div class="field">
+        <p><strong>Description of your fav fashion：</strong></p>
+        <div class="profile-text"><%= simple_format(@user.descript) %></div>
+
+        <p><strong>Favourite Place:</strong> <%= @user.place %></p>
+
+        <% if @user.place_image&.attached? %>
+        <p>
+            <% if @user.place_url.present? %>
+            <%= link_to @user.place_url, target: "_blank", rel: "noopener" do %>
+                <%= image_tag @user.place_image, style: "max-width: 300px; height: auto;" %>
+            <% end %>
+            <% else %>
+            <%= image_tag @user.place_image, style: "max-width: 300px; height: auto;" %>
+            <% end %>
+        </p>
+        <% end %>
+
+        <p><strong>How we met：</strong></p>
+        <div class="profile-text"><%= simple_format(@user.encounter) %></div>
+      </div>
+
+      <% if user_signed_in? && current_user.id == @user.id %>
+        <div class="edit-link" style="margin-top: 15px;">
+          <%= link_to "プロフィール帳を編集する", edit_user_registration_path, class: "btn-edit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<h2>ユーザーの投稿一覧</h2>
+<% @user.tweets.each do |t| %>
+  <p><%= t.user.name %>: <%= t.body %></p>
+<% end %>
+
+<h1>ユーザー詳細</h1>
+
+<h2><%= @user.email %></h2>
+
+<% if user_signed_in? && @user.id != current_user.id %>
+  <% if @isRoom == true %>
+    <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value => @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to "ユーザー一覧に戻る", users_path %> |
+<%= link_to "Tweet一覧に戻る", tweets_path %>

@@ -1,0 +1,111 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <!--サインアップ時に名前を入力できるようにフォームを追加-->
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :email %></p>
+    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password %></p>
+    <% if @minimum_password_length %>
+      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
+    <% end %>
+    <p><%= f.password_field :password, autocomplete: "new-password" %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
+  </div>
+
+  <!-- プロフィール帳項目 -->
+  <div class="field">
+    <p><%= f.label :age, "Age" %></p>
+    <p><%= f.text_field :age %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :bloodtype, "Blood Type" %></p>
+    <p><%= f.text_field :bloodtype %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :zodiac, "Zodiac" %></p>
+    <p><%= f.text_field :zodiac %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :bodyflame, "Body Frame" %></p>
+    <p><%= f.text_field :bodyflame %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :personalcolor, "Personal Colour" %></p>
+    <p><%= f.text_field :personalcolor %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :hobby, "Hobby" %></p>
+    <p><%= f.text_field :hobby %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :mbti, "MBTI" %></p>
+    <p><%= f.text_field :mbti %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :lovetype, "Love type" %></p>
+    <p><%= f.text_field :lovetype %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :music_url, "Favourite Music (Apple Music URL)" %></p>
+    <%= f.text_field :music_url, :size => 140 %>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :fashion, "Favourite Fashion" %></p>
+    <p><%= f.text_field :fashion %></p>
+    <p><%= f.label :fashion_image %></p> <p><%= f.file_field :fashion_image %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :descript, "Descpription of your fav fashion" %></p>
+    <p><%= f.text_area :descript, rows: 4 %></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :place, "Favourite Place" %></p>
+    <p><%= f.text_field :place %></p>
+    <p><%= f.label :place_image %></p> <p><%= f.file_field :place_image %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :place_url, "場所のリンク(URL)" %>
+    <%= f.text_field :place_url, placeholder: "https://example.com" %>
+  </div>
+
+  <!-- 長めの文章入力欄（text_area） -->
+  <div class="field">
+    <p><%= f.label :encounter, "How we met" %></p>
+    <p><%= f.text_area :encounter, rows: 3 %></p>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
